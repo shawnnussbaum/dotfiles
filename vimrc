@@ -18,7 +18,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'fatih/vim-go'
-Plugin 'majutsushi/tagbar'
+Plugin 'SirVer/ultisnips'
 Plugin 'rking/ag.vim'
 Plugin 'tpope/vim-commentary'
 
@@ -80,9 +80,7 @@ map <leader>c :bd<cr>
 map <leader>n :enew<cr>
 map <leader>l :Tabularize /
 map <leader>a :Ag<space>
-map <leader>b :CtrlPBuffer<cr>
 map <leader>f :Explore<cr>
-map <leader>] :TagbarToggle<cr>
 map <leader>g :GitGutterToggle<cr>
 map <leader>u :GundoToggle<cr>
 map <c-up> {
@@ -116,6 +114,7 @@ imap <c-s> <esc>:w<cr>
 
 " plugin settings
 let g:ctrlp_match_window                         = 'order:ttb,max:20'
+let g:UltiSnipsListSnippets                      = "<c-j>"
 let g:netrw_liststyle                            = 3 " format for Explore
 let g:gitgutter_enabled                          = 0
 let g:airline#extensions#tabline#enabled         = 1
@@ -149,41 +148,27 @@ if $TERM_PROGRAM =~ "iTerm"
     let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 endif
 
+" gui options
+if has('gui_macvim')
+    set guioptions-=L
+    set guioptions-=r
+    set guifont=Source\ Code\ Pro\ Light:h14
+    let macvim_hig_shift_movement = 1
+    autocmd GUIEnter * set fullscreen
+endif
+
 " vim-go settings
-let g:go_fmt_command         = "goimports" "Explicited the formater plugin (gofmt, goimports, goreturn...)
+let g:go_fmt_command         = "goimports"
 let g:go_highlight_functions = 1
-let g:go_highlight_methods   = 1
-let g:go_highlight_structs   = 1
-au FileType go nmap <Leader>gi <Plug>(go-info)        " Show type info for the word under your cursor
-au FileType go nmap <Leader>gb <Plug>(go-doc-browser) " Open the Godoc in browser
-au FileType go nmap <Leader>gd <Plug>(go-doc)         " Open the relevant Godoc for the word under the cursor
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
+au FileType go nmap <Leader>t <Plug>(go-test)
+au FileType go nmap <Leader>b <Plug>(go-build)
+au FileType go nmap <Leader>r <Plug>(go-run)
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>d <Plug>(go-doc)
+au FileType go nmap <Leader>w <Plug>(go-doc-browser)
+au FileType go nmap <c-x> :GoDecls<cr>
+autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
 
 " Source local changes
 if filereadable(expand("~/.vimrc.local"))
