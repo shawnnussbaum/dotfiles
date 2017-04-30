@@ -1,29 +1,25 @@
-" Vundle
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'sjl/gundo.vim'
-Plugin 'godlygeek/tabular'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'fatih/vim-go'
-Plugin 'SirVer/ultisnips'
-Plugin 'rking/ag.vim'
-Plugin 'tpope/vim-commentary'
-
-call vundle#end()
-filetype plugin indent on
+" vim-plug
+call plug#begin('~/.vim/plugged')
+Plug 'altercation/vim-colors-solarized'
+Plug 'nanotech/jellybeans.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'sjl/gundo.vim'
+Plug 'godlygeek/tabular'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'plasticboy/vim-markdown'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
+Plug 'fatih/vim-go'
+Plug 'SirVer/ultisnips'
+Plug 'tpope/vim-commentary'
+Plug 'benmills/vimux'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'sjl/vitality.vim'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+call plug#end()
 
 " general settings
 set autoindent
@@ -65,17 +61,12 @@ set wrap
 set linebreak
 set nofoldenable
 
-syntax enable
 set background=dark
 colorscheme solarized
 
 " keyboard shortcuts
 let mapleader = ","
 imap jj <esc>
-map <c-h> <c-w>h
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
 map <leader>c :bd<cr>
 map <leader>n :enew<cr>
 map <leader>l :Tabularize /
@@ -83,8 +74,18 @@ map <leader>a :Ag<space>
 map <leader>f :Explore<cr>
 map <leader>g :GitGutterToggle<cr>
 map <leader>u :GundoToggle<cr>
-map <c-up> {
-map <c-down> }
+
+" Vimux commands
+map <leader>vp :VimuxPromptCommand<cr>
+map <leader>vl :VimuxRunLastCommand<cr>
+map <leader>vi :VimuxInspectRunner<cr>
+
+" vim-tmux-navigator
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <C-Left> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-Down> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-Up>   :TmuxNavigateUp<cr>
+nnoremap <silent> <C-Right> :TmuxNavigateRight<cr>
 
 " Remove trailing whitespace on <leader>S
 nmap <leader>S :%s/\s\+$//<cr>:let @/=''<cr>
@@ -101,7 +102,7 @@ imap <c-a> <c-o>^
 imap <c-e> <c-o>$
 
 " grep word under cursor
-nmap <leader>j :Ag "\b<c-r><c-w>\b"<cr>:cw<cr>
+nmap <leader>j :Ag <c-r>=expand('<cword>')<cr><cr>
 
 " edit vimrc/zshrc and load vimrc bindings
 nmap <leader>ev :e $MYVIMRC<cr>
@@ -113,7 +114,6 @@ map  <c-s> :w<cr>
 imap <c-s> <esc>:w<cr>
 
 " plugin settings
-let g:ctrlp_match_window                         = 'order:ttb,max:20'
 let g:UltiSnipsListSnippets                      = "<c-j>"
 let g:netrw_liststyle                            = 3 " format for Explore
 let g:gitgutter_enabled                          = 0
@@ -135,17 +135,12 @@ nmap <leader>+ <Plug>AirlineSelectNextTab
 if executable('ag')
     " Use Ag over Grep
     set grepprg=ag\ --nogroup\ --nocolor
-    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-    " ag is fast enough that CtrlP doesn't need to cache
-    let g:ctrlp_use_caching = 0
-    let g:ctrlp_regexp = 1
 endif
 
-" Change cursor shape between insert and normal mode in iTerm2.app
-if $TERM_PROGRAM =~ "iTerm"
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+" Use fzf
+if executable('fzf')
+    nnoremap <silent> <c-p> :Files<cr>
+    imap <c-x><c-k> <plug>(fzf-complete-word)
 endif
 
 " gui options
@@ -153,8 +148,8 @@ if has('gui_macvim')
     set guioptions-=L
     set guioptions-=r
     set guifont=Source\ Code\ Pro\ Light:h14
-    let macvim_hig_shift_movement = 1
-    autocmd GUIEnter * set fullscreen
+    "let macvim_hig_shift_movement = 1
+    "autocmd GUIEnter * set fullscreen
 endif
 
 " vim-go settings
