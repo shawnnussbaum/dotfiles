@@ -61,8 +61,12 @@ set wrap
 set linebreak
 set nofoldenable
 
-set background=dark
 colorscheme solarized
+if $ITERM_PROFILE == 'Light'
+    set background=light
+else
+    set background=dark
+endif
 
 " keyboard shortcuts
 let mapleader = ","
