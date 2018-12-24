@@ -14,7 +14,9 @@ fi
 
 autoload -Uz promptinit
 promptinit
-prompt agnoster-py
+prompt pure
+prompt_newline='%666v'
+PROMPT=" $PROMPT"
 
 # Disable flow control commands (keeps C-s from freezing everything)
 stty start undef

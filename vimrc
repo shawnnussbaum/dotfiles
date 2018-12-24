@@ -12,6 +12,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'fatih/vim-go'
+Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-commentary'
 Plug 'benmills/vimux'

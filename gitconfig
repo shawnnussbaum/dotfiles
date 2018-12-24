@@ -8,6 +8,7 @@
 [difftool]
     prompt = false
 [alias]
+    b = branch
     d = difftool
     co = checkout
     cob = checkout -b
