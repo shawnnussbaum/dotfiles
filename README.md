@@ -16,7 +16,6 @@ Installation
 
         ln -s ~/dotfiles/zpreztorc ~/.zpreztorc
         ln -s ~/dotfiles/zshrc ~/.zshrc
-        ln -s ~/dotfiles/agnoster-py.zsh-theme ~/.zprezto/modules/prompt/functions/prompt_agnoster-py_setup
         ln -s ~/dotfiles/vimrc ~/.vimrc
         ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
         ln -s ~/dotfiles/gitconfig ~/.gitconfig
