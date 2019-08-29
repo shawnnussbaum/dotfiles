@@ -14,12 +14,16 @@ Plug 'tpope/vim-unimpaired'
 Plug 'fatih/vim-go'
 Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
 Plug 'benmills/vimux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'sjl/vitality.vim'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'nvie/vim-flake8'
+Plug 'fs111/pydoc.vim'
+Plug 'posva/vim-vue'
 call plug#end()
 
 " general settings
@@ -119,6 +123,11 @@ map  <c-s> :w<cr>
 imap <c-s> <esc>:w<cr>
 
 " plugin settings
+let g:pydoc_cmd = 'python -m pydoc'
+" let g:pydoc_open_cmd = 'vsplit'
+let g:pydoc_window_lines=30
+let g:pydoc_highlight=0
+let g:gundo_prefer_python3 = 1
 let g:UltiSnipsListSnippets                      = "<c-j>"
 let g:netrw_liststyle                            = 3 " format for Explore
 let g:gitgutter_enabled                          = 0
