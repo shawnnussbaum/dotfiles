@@ -8,13 +8,10 @@ Plug 'sjl/gundo.vim'
 Plug 'godlygeek/tabular'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'plasticboy/vim-markdown'
-Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'fatih/vim-go'
 Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
 Plug 'benmills/vimux'
 Plug 'christoomey/vim-tmux-navigator'
@@ -81,7 +78,7 @@ map <leader>n :enew<cr>
 map <leader>l :Tabularize /
 map <leader>a :Ag<space>
 map <leader>f :Explore<cr>
-map <leader>g :GitGutterToggle<cr>
+map <leader>g :0Glog<cr>
 map <leader>u :GundoToggle<cr>
 
 " Vimux commands
@@ -128,7 +125,6 @@ let g:pydoc_cmd = 'python -m pydoc'
 let g:pydoc_window_lines=30
 let g:pydoc_highlight=0
 let g:gundo_prefer_python3 = 1
-let g:UltiSnipsListSnippets                      = "<c-j>"
 let g:netrw_liststyle                            = 3 " format for Explore
 let g:gitgutter_enabled                          = 0
 let g:airline#extensions#tabline#enabled         = 1
