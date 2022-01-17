@@ -15,7 +15,6 @@ Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink
 Plug 'tpope/vim-commentary'
 Plug 'benmills/vimux'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'sjl/vitality.vim'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'nvie/vim-flake8'
@@ -174,6 +173,9 @@ au FileType go nmap <Leader>w <Plug>(go-doc-browser)
 au FileType go nmap <c-x> :GoDecls<cr>
 autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
 autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+
+let &t_SI.="\e[5 q" "SI = INSERT mode
+let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 
 " Source local changes
 if filereadable(expand("~/.vimrc.local"))
