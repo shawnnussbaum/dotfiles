@@ -13,8 +13,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'fatih/vim-go'
 Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 Plug 'tpope/vim-commentary'
-Plug 'benmills/vimux'
-Plug 'christoomey/vim-tmux-navigator'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'nvie/vim-flake8'
@@ -79,18 +77,6 @@ map <leader>a :Ag<space>
 map <leader>f :Explore<cr>
 map <leader>g :0Glog<cr>
 map <leader>u :GundoToggle<cr>
-
-" Vimux commands
-map <leader>vp :VimuxPromptCommand<cr>
-map <leader>vl :VimuxRunLastCommand<cr>
-map <leader>vi :VimuxInspectRunner<cr>
-
-" vim-tmux-navigator
-let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <C-Left> :TmuxNavigateLeft<cr>
-nnoremap <silent> <C-Down> :TmuxNavigateDown<cr>
-nnoremap <silent> <C-Up>   :TmuxNavigateUp<cr>
-nnoremap <silent> <C-Right> :TmuxNavigateRight<cr>
 
 " Remove trailing whitespace on <leader>S
 nmap <leader>S :%s/\s\+$//<cr>:let @/=''<cr>

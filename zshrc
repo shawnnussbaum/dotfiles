@@ -33,8 +33,6 @@ export VISUAL='vim'
 
 alias g='git'
 alias v='vim'
-alias t='tmux'
-alias ta='tmux a -d'
 alias c='clear'
 
 # Setup fzf
