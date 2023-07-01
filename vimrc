@@ -13,7 +13,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'fatih/vim-go'
 Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 Plug 'tpope/vim-commentary'
-Plug '/usr/local/opt/fzf'
+Plug '/opt/homebrew/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'nvie/vim-flake8'
 Plug 'fs111/pydoc.vim'
